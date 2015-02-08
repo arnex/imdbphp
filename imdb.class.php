@@ -320,7 +320,7 @@ class imdb extends movie_base {
    */
   protected function rate_vote() {
     $this->getPage("Title");
-    if (preg_match('!<span itemprop="ratingValue">(\d{1,2}\.\d)!i',$this->page["Title"],$match)){
+    if (preg_match('/(?<=<span itemprop="ratingValue">)(\d{1,2}[,.]\d{1})(?=<\/span>)/',$this->page["Title"],$match)){
       $this->main_rating = $match[1];
     } else {
       $this->main_rating = 0;
